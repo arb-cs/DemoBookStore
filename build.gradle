@@ -39,7 +39,6 @@ dependencies {
             'io.qameta.allure:allure-selenide:2.29.0',
             'io.qameta.allure:allure-rest-assured:2.29.0',
             'org.slf4j:slf4j-simple:2.0.13',
-            'com.google.code.gson:gson:2.11.0'
     )
 }
 
