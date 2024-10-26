@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
@@ -13,6 +14,7 @@ public class BookStore extends TestBase {
 
     @Test
     @WithLogin
+    @Tag("ui_tests")
     void deleteBookFromTheCartUITest() {
         step("Preconditions: delete books from the cart(if there were being added earlier), add book to the cart", () -> {
             deleteBooksFromTheCart();

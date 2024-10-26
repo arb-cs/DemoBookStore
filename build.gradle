@@ -42,6 +42,12 @@ dependencies {
     )
 }
 
-test {
-    useJUnitPlatform()
+//test {
+//    useJUnitPlatform()
+//}
+
+task ui_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags("ui_tests")
+    }
 }
