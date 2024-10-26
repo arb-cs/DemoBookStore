@@ -1,10 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Selenide;
-import models.GetUserResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
 import static api.account.Account.getUserEmptyBooksList;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;

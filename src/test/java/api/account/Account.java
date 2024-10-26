@@ -30,22 +30,19 @@ public class Account extends TestBase{
                 .extract().as(LoginResponse.class);
     }
 
-    public static LoginResponse setCookie() {
-        LoginResponse authUser = login();
+    public static LoginResponse authUser = login();
+
+    public static void setCookie(LoginResponse authUser) {
         open("/favicon.ico");
         getWebDriver().manage().addCookie(new Cookie("userID", authUser.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", authUser.getExpires()));
         getWebDriver().manage().addCookie(new Cookie("token", authUser.getToken()));
-
-        return authUser;
     }
-
-    static String token = setCookie().getToken();
 
     public static void getUserEmptyBooksList(String UUID) {
        GetUserResponse response = given()
                 .spec(requestSpec)
-                .header("Authorization", "Bearer " + token)
+                .header("Authorization", "Bearer " + authUser.getToken())
                 .when()
                 .get(USER + UUID)
                 .then()
