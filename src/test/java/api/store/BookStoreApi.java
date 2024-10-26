@@ -3,9 +3,8 @@ package api.store;
 import models.AddBookToCart;
 import models.Isbn;
 import tests.TestBase;
-import static api.authorization.Account.setCookie;
+import static api.account.Account.setCookie;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static api.endpoints.BookStoreEndPoints.ADD_OR_DELETE_BOOKS;
 import static specs.Request.requestSpec;
 import static specs.Request.responseSpec;
@@ -24,7 +23,6 @@ public class BookStoreApi extends TestBase {
         bookBody.setCollectionOfIsbns(List.of(bookIsbn));
         given()
                 .spec(requestSpec)
-                .contentType(JSON)
                 .header("Authorization", "Bearer " + token)
                 .body(bookBody)
                 .when()
@@ -36,17 +34,13 @@ public class BookStoreApi extends TestBase {
 
     public static void deleteBooksFromTheCart() {
         given()
-                .log().uri()
-                .log().method()
-                .log().body()
-                .contentType(JSON)
+                .spec(requestSpec)
                 .header("Authorization", "Bearer " + token)
                 .queryParams("UserId", userId)
                 .when()
                 .delete(ADD_OR_DELETE_BOOKS)
                 .then()
-                .log().status()
-                .log().body()
+                .spec(responseSpec)
                 .statusCode(204);
     }
 

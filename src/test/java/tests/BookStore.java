@@ -1,8 +1,11 @@
 package tests;
 
 import com.codeborne.selenide.Selenide;
+import models.GetUserResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import static api.account.Account.getUserEmptyBooksList;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 import helpers.WithLogin;
@@ -33,6 +36,11 @@ public class BookStore extends TestBase {
         });
 
         Selenide.refresh();
+
+        String UUID = "b9c58dbe-216a-44b1-9e77-5617ef601bf1";
+        step("The user has no books in the cart", () -> {
+            getUserEmptyBooksList(UUID);
+        });
     }
 
 }

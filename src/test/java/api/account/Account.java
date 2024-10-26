@@ -1,13 +1,17 @@
-package api.authorization;
+package api.account;
 
+import models.GetUserResponse;
 import models.LoginResponse;
 import tests.TestBase;
 import org.openqa.selenium.Cookie;
+import java.util.Collections;
 import static api.endpoints.AccountEndPoints.LOGIN;
+import static api.endpoints.AccountEndPoints.USER;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static specs.Request.requestSpec;
 import static specs.Request.responseSpec;
 import static utils.TestData.getUsersAuthData;
@@ -15,9 +19,8 @@ import static utils.TestData.getUsersAuthData;
 public class Account extends TestBase{
 
     public static LoginResponse login() {
-        return given()
+        return  given()
                 .spec(requestSpec)
-                .contentType(JSON)
                 .body(getUsersAuthData())
                 .when()
                 .post(LOGIN)
@@ -37,4 +40,18 @@ public class Account extends TestBase{
         return authUser;
     }
 
+    static String token = setCookie().getToken();
+
+    public static void getUserEmptyBooksList(String UUID) {
+       GetUserResponse response = given()
+                .spec(requestSpec)
+                .header("Authorization", "Bearer " + token)
+                .when()
+                .get(USER + UUID)
+                .then()
+                .statusCode(200)
+               .extract().as(GetUserResponse.class);
+
+        assertThat(response.getBooks(), equalTo(Collections.emptyList()));
+    }
 }
