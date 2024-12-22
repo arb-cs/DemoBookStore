@@ -2,7 +2,6 @@ package api.store;
 
 import models.AddBookToCart;
 import models.Isbn;
-import tests.TestBase;
 import static api.account.Account.authUser;
 import static io.restassured.RestAssured.given;
 import static api.endpoints.BookStoreEndPoints.ADD_OR_DELETE_BOOKS;
@@ -10,7 +9,7 @@ import static specs.Request.requestSpec;
 import static specs.Request.responseSpec;
 import java.util.List;
 
-public class BookStoreApi extends TestBase {
+public class BookStoreApi {
 
     private static final String token = authUser.getToken();
     private static final String userId = authUser.getUserId();

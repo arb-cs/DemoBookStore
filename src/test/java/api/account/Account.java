@@ -2,7 +2,6 @@ package api.account;
 
 import models.GetUserResponse;
 import models.LoginResponse;
-import tests.TestBase;
 import org.openqa.selenium.Cookie;
 import java.util.Collections;
 import static api.endpoints.AccountEndPoints.LOGIN;
@@ -16,7 +15,7 @@ import static specs.Request.requestSpec;
 import static specs.Request.responseSpec;
 import static utils.TestData.getUsersAuthData;
 
-public class Account extends TestBase{
+public class Account {
 
     public static LoginResponse login() {
         return  given()

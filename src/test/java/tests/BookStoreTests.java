@@ -11,7 +11,7 @@ import static api.store.BookStoreApi.deleteBooksFromTheCart;
 import static api.store.BookStoreApi.addBookToTheCart;
 import pages.Profile;
 
-public class BookStore extends TestBase {
+public class BookStoreTests extends TestBase {
 
     @Test
     @WithLogin
