@@ -1,8 +1,11 @@
 package api.store;
 
+import io.qameta.allure.Step;
 import models.AddBookToCart;
 import models.Isbn;
+import models.BookModel;
 import static api.account.Account.authUser;
+import static api.endpoints.BookStoreEndPoints.GET_BOOKS;
 import static io.restassured.RestAssured.given;
 import static api.endpoints.BookStoreEndPoints.ADD_OR_DELETE_BOOKS;
 import static specs.Request.requestSpec;
@@ -14,6 +17,7 @@ public class BookStoreApi {
     private static final String token = authUser.getToken();
     private static final String userId = authUser.getUserId();
 
+    @Step("Add book the the cart.")
     public static void addBookToTheCart(String isbn) {
         AddBookToCart bookBody = new AddBookToCart();
         Isbn bookIsbn = new Isbn();
@@ -31,6 +35,16 @@ public class BookStoreApi {
                 .statusCode(201);
     }
 
+    @Step("Get books list.")
+    public static BookModel getBooksList(String isbn) {
+        return given(requestSpec)
+                .get(GET_BOOKS + isbn)
+                .then()
+                .statusCode(200)
+                .extract().as(BookModel.class);
+        }
+
+    @Step("Delete books from the cart ((if there were being added earlier))")
     public static void deleteBooksFromTheCart() {
         given()
                 .spec(requestSpec)

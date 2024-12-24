@@ -1,5 +1,6 @@
 package api.account;
 
+import io.qameta.allure.Step;
 import models.GetUserResponse;
 import models.LoginResponse;
 import org.openqa.selenium.Cookie;
@@ -13,7 +14,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static specs.Request.requestSpec;
 import static specs.Request.responseSpec;
-import static utils.TestData.getUsersAuthData;
+import static utils.UserData.getUsersAuthData;
 
 public class Account {
 
@@ -38,6 +39,7 @@ public class Account {
         getWebDriver().manage().addCookie(new Cookie("token", authUser.getToken()));
     }
 
+    @Step("The user has no books in the cart (by API)")
     public static void getUserEmptyBooksList(String UUID) {
        GetUserResponse response = given()
                 .spec(requestSpec)
