@@ -33,7 +33,7 @@ public class Profile {
         return this;
     }
 
-    @Step("There is no book in the cart.")
+    @Step("There is no book in the cart (by UI).")
     public Profile checkThatTheBookWasDeleted(String isbn) {
         BookModel book = BookStoreApi.getBooksList(isbn);
         bookInTable.shouldNotHave(text(book.getAuthor()))

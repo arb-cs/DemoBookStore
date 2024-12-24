@@ -17,7 +17,7 @@ public class BookStoreApi {
     private static final String token = authUser.getToken();
     private static final String userId = authUser.getUserId();
 
-    @Step("Add book the the cart.")
+    @Step("Add book to the cart.")
     public static void addBookToTheCart(String isbn) {
         AddBookToCart bookBody = new AddBookToCart();
         Isbn bookIsbn = new Isbn();
