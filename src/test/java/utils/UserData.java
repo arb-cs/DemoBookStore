@@ -14,7 +14,7 @@ public class UserData {
         }
 
         if (System.getProperty("userPassword") == null) {
-            throw new RuntimeException("You must provide user name.");
+            throw new RuntimeException("You must provide user password.");
         } else {
             authData.setPassword(System.getProperty("userPassword"));
         }
