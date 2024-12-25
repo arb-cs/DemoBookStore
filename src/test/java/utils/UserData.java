@@ -7,16 +7,19 @@ public class UserData {
     public static GenerateTokenRequest getUsersAuthData() {
         GenerateTokenRequest authData = new GenerateTokenRequest();
 
-        if (System.getProperty("userName") == null) {
-            throw new RuntimeException("You must provide user name.");
+        String userName = System.getProperty("userName");
+        String userPassword = System.getProperty("userPassword");
+
+        if (userName == null) {
+            throw new RuntimeException("You must provide a user name.");
         } else {
-            authData.setUserName(System.getProperty("userName"));
+            authData.setUserName(userName);
         }
 
-        if (System.getProperty("userPassword") == null) {
-            throw new RuntimeException("You must provide user password.");
+        if (userPassword == null) {
+            throw new RuntimeException("You must provide a user password.");
         } else {
-            authData.setPassword(System.getProperty("userPassword"));
+            authData.setPassword(userPassword);
         }
 
         return authData;
