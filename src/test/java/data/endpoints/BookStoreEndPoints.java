@@ -1,4 +1,4 @@
-package api.endpoints;
+package data.endpoints;
 
 public class BookStoreEndPoints {
     public static final String BASE_URI = "/BookStore/v1";

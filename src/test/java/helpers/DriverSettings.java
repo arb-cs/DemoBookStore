@@ -9,7 +9,7 @@ import java.util.Map;
 public class DriverSettings {
     public static void configure() {
         Configuration.baseUrl = ProjectConfig.config.baseUrl();
-        Configuration.remote = System.getProperty("remote");
+        //Configuration.remote = System.getProperty("remote");
         Configuration.pageLoadStrategy = ProjectConfig.config.pageLoadStrategy();
         Configuration.browserSize = ProjectConfig.config.browserSize();
 

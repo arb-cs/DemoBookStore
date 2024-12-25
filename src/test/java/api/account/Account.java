@@ -5,8 +5,8 @@ import models.GetUserResponse;
 import models.LoginResponse;
 import org.openqa.selenium.Cookie;
 import java.util.Collections;
-import static api.endpoints.AccountEndPoints.LOGIN;
-import static api.endpoints.AccountEndPoints.USER;
+import static data.endpoints.AccountEndPoints.LOGIN;
+import static data.endpoints.AccountEndPoints.USER;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
@@ -14,20 +14,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static specs.Request.requestSpec;
 import static specs.Request.responseSpec;
-import static utils.UserData.getUsersAuthData;
+import static data.UserData.getUsersAuthData;
 
 public class Account {
 
+    @Step("Login into the BookStore.")
     public static LoginResponse login() {
-        return  given()
-                .spec(requestSpec)
-                .body(getUsersAuthData())
-                .when()
-                .post(LOGIN)
-                .then()
-                .spec(responseSpec)
-                .statusCode(200)
-                .extract().as(LoginResponse.class);
+        return
+            given().
+                spec(requestSpec).
+                body(getUsersAuthData()).
+            when()
+                .post(LOGIN).
+            then().
+                spec(responseSpec).
+                statusCode(200).
+                extract().as(LoginResponse.class);
     }
 
     public static LoginResponse authUser = login();
@@ -39,8 +41,8 @@ public class Account {
         getWebDriver().manage().addCookie(new Cookie("token", authUser.getToken()));
     }
 
-    @Step("The user has no books in the cart (by API)")
-    public static void getUserEmptyBooksList(String UUID) {
+    @Step("The user has no books in the cart (by API).")
+    public GetUserResponse getUserEmptyBooksList(String UUID, LoginResponse authUser) {
        GetUserResponse response = given()
                 .spec(requestSpec)
                 .header("Authorization", "Bearer " + authUser.getToken())
