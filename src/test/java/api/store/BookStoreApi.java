@@ -39,6 +39,7 @@ public class BookStoreApi {
         return
             given(requestSpec).
                 queryParam("ISBN", isbn).
+            when().
                 get(BASE_URI).
             then().
                 statusCode(200).

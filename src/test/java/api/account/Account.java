@@ -35,7 +35,7 @@ public class Account {
                header("Authorization", "Bearer " + authUser.getToken()).
            when().
                get(USER + userUuid).
-               then().
+           then().
                statusCode(200).
                extract().as(GetUserResponse.class);
     }
