@@ -9,5 +9,4 @@ public class LoginResponse {
     private String userId;
     private String token;
     private String expires;
-
 }

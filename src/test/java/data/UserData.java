@@ -3,7 +3,6 @@ package data;
 import models.GenerateTokenRequest;
 
 public class UserData {
-
     public static GenerateTokenRequest getUsersAuthData() {
         GenerateTokenRequest authData = new GenerateTokenRequest();
 
@@ -24,5 +23,4 @@ public class UserData {
 
         return authData;
     }
-
 }

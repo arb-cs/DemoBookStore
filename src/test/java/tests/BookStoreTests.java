@@ -2,12 +2,15 @@ package tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import static api.store.BookStoreApi.deleteBooksFromTheCart;
-import static api.store.BookStoreApi.addBookToTheCart;
+import java.util.Collections;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import api.account.Account;
+import api.store.BookStoreApi;
+import models.GetUserResponse;
 import helpers.WithLogin;
 import pages.Profile;
 import static data.TestData.ISBN;
-import static data.TestData.UUID;
 
 public class BookStoreTests extends TestBase {
 
@@ -15,16 +18,19 @@ public class BookStoreTests extends TestBase {
     @WithLogin
     @Tag("ui_tests")
     void deleteBookFromTheCartUITest() {
-
-        deleteBooksFromTheCart();
-        addBookToTheCart(ISBN);
+        BookStoreApi bookStoreApi = new BookStoreApi();
+        bookStoreApi.deleteBooksFromTheCart();
+        bookStoreApi.addBookToTheCart(ISBN);
 
         Profile profile = new Profile();
         profile.openProfilePage();
         profile.clickOnAnItemToRemoveABookFromTheCart();
         profile.confirmDeletionOfABook();
-
         profile.checkThatTheBookWasDeleted(ISBN);
-        //getUserEmptyBooksList(UUID);
+
+        String userUuid = Account.authUser.getUserId();
+        Account account = new Account();
+        GetUserResponse response = account.getUserEmptyBooksList(userUuid);
+        assertThat(response.getBooks(), equalTo(Collections.emptyList()));
     }
 }

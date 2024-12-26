@@ -55,12 +55,8 @@ tasks.withType(Test) {
     }
 }
 
-//task ui_tests(type: Test) {
-//    useJUnitPlatform{
-//        includeTags("ui_tests")
-//    }
-//}
-
-test {
-    useJUnitPlatform()
+task ui_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags("ui_tests")
+    }
 }
