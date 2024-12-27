@@ -4,14 +4,15 @@ import api.store.BookStoreApi;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import models.BookModel;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class Profile {
     private final SelenideElement deleteBook = $("#delete-record-undefined"),
-            modalOkButton = $("#closeSmallModal-ok"),
-            bookInTable = $(".ReactTable");
+        modalOkButton = $("#closeSmallModal-ok"),
+        bookInTable = $(".ReactTable");
 
     @Step("Open profile page.")
     public void openProfilePage() {
@@ -33,6 +34,6 @@ public class Profile {
         BookStoreApi bookStoreApi = new BookStoreApi();
         BookModel book = bookStoreApi.getBooksList(isbn);
         this.bookInTable.shouldNotHave(text(book.getAuthor()))
-                .shouldNotHave(text(book.getTitle()));
+            .shouldNotHave(text(book.getTitle()));
     }
 }

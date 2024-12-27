@@ -15,8 +15,8 @@ public class DriverSettings {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.of(
-                "enableVNC", true,
-                "enableVideo", true
+            "enableVNC", true,
+            "enableVideo", true
         ));
 
         Configuration.browserCapabilities = capabilities;

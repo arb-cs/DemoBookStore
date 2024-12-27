@@ -2,14 +2,18 @@ package tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
 import java.util.Collections;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+
 import api.account.Account;
 import api.store.BookStoreApi;
 import models.GetUserResponse;
 import helpers.WithLogin;
 import pages.Profile;
+
 import static data.TestData.ISBN;
 
 public class BookStoreTests extends TestBase {

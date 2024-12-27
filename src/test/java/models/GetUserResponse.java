@@ -1,6 +1,7 @@
 package models;
 
 import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -8,5 +9,5 @@ import java.util.Map;
 public class GetUserResponse {
     private String userId;
     private String username;
-    private ArrayList<Map<String,?>> books;
+    private ArrayList<Map<String, ?>> books;
 }

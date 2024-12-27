@@ -2,11 +2,14 @@ package helpers;
 
 import io.qameta.allure.Attachment;
 import com.codeborne.selenide.Selenide;
+
 import static com.codeborne.selenide.Selenide.sessionId;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
+
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.OutputType;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -30,8 +33,8 @@ public class AllureAttachments {
 
     public static void browserConsoleLogs() {
         attachAsText(
-                "Browser console logs",
-                String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+            "Browser console logs",
+            String.join("\n", Selenide.getWebDriverLogs(BROWSER))
         );
     }
 
@@ -48,8 +51,8 @@ public class AllureAttachments {
     @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
     public static String addVideo() {
         return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl()
-                + "' type='video/mp4'></video></body></html>";
+            + getVideoUrl()
+            + "' type='video/mp4'></video></body></html>";
     }
 
 }
