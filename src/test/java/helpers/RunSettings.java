@@ -16,6 +16,7 @@ public class RunSettings {
         boolean isRemote = remote != null || baseUrl != null || baseURI != null;
 
         if (isRemote) {
+            Configuration.baseUrl = baseUrl;
             Configuration.remote = remote;
             RestAssured.baseURI = baseURI;
             Configuration.browser = System.getProperty("browser");
