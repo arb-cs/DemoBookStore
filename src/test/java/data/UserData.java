@@ -1,6 +1,8 @@
 package data;
 
-import config.ProjectConfig;
+import config.Auth;
+import config.AuthConfig;
+import config.BookStore;
 import models.GenerateTokenRequest;
 
 public class UserData {
@@ -11,13 +13,13 @@ public class UserData {
         String password = System.getProperty("userPassword");
 
         if (name == null) {
-            authData.setUserName(ProjectConfig.config.name());
+            authData.setUserName(Auth.config.name());
         } else {
             authData.setUserName(name);
         }
 
         if (password == null) {
-            authData.setPassword(ProjectConfig.config.password());
+            authData.setPassword(Auth.config.password());
         } else {
             authData.setPassword(password);
         }
