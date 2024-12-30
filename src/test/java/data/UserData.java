@@ -1,8 +1,6 @@
 package data;
 
 import config.Auth;
-import config.AuthConfig;
-import config.BookStore;
 import models.GenerateTokenRequest;
 
 public class UserData {
