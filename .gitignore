@@ -14,3 +14,4 @@
 
 ### Other ###
 build/
+src/test/resources/config/user.properties

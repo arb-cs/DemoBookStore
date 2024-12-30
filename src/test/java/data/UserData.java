@@ -1,24 +1,25 @@
 package data;
 
+import config.ProjectConfig;
 import models.GenerateTokenRequest;
 
 public class UserData {
     public static GenerateTokenRequest getUsersAuthData() {
         GenerateTokenRequest authData = new GenerateTokenRequest();
 
-        String userName = System.getProperty("userName");
-        String userPassword = System.getProperty("userPassword");
+        String name = System.getProperty("userName");
+        String password = System.getProperty("userPassword");
 
-        if (userName == null) {
-            throw new RuntimeException("You must provide a user name.");
+        if (name == null) {
+            authData.setUserName(ProjectConfig.config.name());
         } else {
-            authData.setUserName(userName);
+            authData.setUserName(name);
         }
 
-        if (userPassword == null) {
-            throw new RuntimeException("You must provide a user password.");
+        if (password == null) {
+            authData.setPassword(ProjectConfig.config.password());
         } else {
-            authData.setPassword(userPassword);
+            authData.setPassword(password);
         }
 
         return authData;
