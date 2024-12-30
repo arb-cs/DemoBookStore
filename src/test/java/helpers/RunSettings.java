@@ -10,9 +10,9 @@ import java.util.Map;
 public class RunSettings {
     public static void configure() {
 
-        String remote = System.getProperty("remote");
+        String isRemote = System.getProperty("remote");
 
-        if (remote != null) {
+        if (isRemote.equals("true")) {
             Configuration.baseUrl = BookStore.config.baseUrl();
             Configuration.pageLoadStrategy = BookStore.config.pageLoadStrategy();
             Configuration.remote = BookStore.config.remoteUrl();
