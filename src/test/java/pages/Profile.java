@@ -21,12 +21,12 @@ public class Profile {
 
     @Step("Delete a book.")
     public void clickOnAnItemToRemoveABookFromTheCart() {
-        this.deleteBook.click();
+        this.deleteBook.scrollIntoView(true).click();
     }
 
     @Step("Click on OK window.")
     public void confirmDeletionOfABook() {
-        this.modalOkButton.click();
+        this.modalOkButton.scrollIntoView(true).click();
     }
 
     @Step("There is no book in the cart (by UI).")
