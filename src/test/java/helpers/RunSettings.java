@@ -9,18 +9,8 @@ import java.util.Map;
 
 public class RunSettings {
     public static void configure() {
-
-        String isRemote = System.getProperty("remote");
-
-        if (isRemote.equals("true")) {
-            Configuration.baseUrl = BookStore.config.baseUrl();
-            Configuration.pageLoadStrategy = BookStore.config.pageLoadStrategy();
+        if (BookStore.config.remoteUrl() != null) {
             Configuration.remote = BookStore.config.remoteUrl();
-            RestAssured.baseURI = BookStore.config.baseURI();
-            Configuration.browser = BookStore.config.browser();
-            Configuration.browserVersion = BookStore.config.browserVersion();
-            Configuration.browserSize = BookStore.config.browserSize();
-
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.of(
                 "enableVNC", true,
@@ -28,12 +18,12 @@ public class RunSettings {
             ));
 
             Configuration.browserCapabilities = capabilities;
-        } else {
-            Configuration.baseUrl = BookStore.config.localBaseUrl();
-            RestAssured.baseURI = BookStore.config.localBaseURI();
-            Configuration.browser = BookStore.config.localBrowser();
-            Configuration.browserVersion = BookStore.config.localBrowserVersion();
-            Configuration.browserSize = BookStore.config.localBrowserSize();
         }
+        Configuration.baseUrl = BookStore.config.baseUrl();
+        Configuration.pageLoadStrategy = BookStore.config.pageLoadStrategy();
+        RestAssured.baseURI = BookStore.config.baseURI();
+        Configuration.browser = BookStore.config.browser();
+        Configuration.browserVersion = BookStore.config.browserVersion();
+        Configuration.browserSize = BookStore.config.browserSize();
     }
 }
